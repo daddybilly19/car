@@ -10,6 +10,7 @@ radio.onReceivedNumber(function (receivedNumber) {
         cuteBot.stopcar()
     }
     if (receivedNumber == 2) {
+        cuteBot.closeheadlights()
         cuteBot.singleheadlights(cuteBot.RGBLights.RGB_R, 148, 201, 61)
         cuteBot.turnleft()
         basic.pause(10)
@@ -17,6 +18,7 @@ radio.onReceivedNumber(function (receivedNumber) {
         cuteBot.closeheadlights()
     }
     if (receivedNumber == 3) {
+        cuteBot.closeheadlights()
         cuteBot.singleheadlights(cuteBot.RGBLights.RGB_L, 148, 201, 61)
         cuteBot.turnright()
         basic.pause(10)
@@ -27,12 +29,10 @@ radio.onReceivedNumber(function (receivedNumber) {
         cuteBot.stopcar()
     }
 })
-let sonar = 0
 radio.setGroup(69)
+let strip = neopixel.create(DigitalPin.P0, 24, NeoPixelMode.RGB)
 basic.forever(function () {
-    sonar = cuteBot.ultrasonic(cuteBot.SonarUnit.Centimeters)
-    if (sonar > 2 && sonar < 15) {
-        cuteBot.stopcar()
-        radio.sendNumber(5)
-    }
+    cuteBot.singleheadlights(cuteBot.RGBLights.RGB_L, 255, 0, 255)
+    cuteBot.singleheadlights(cuteBot.RGBLights.RGB_L, 255, 0, 255)
+    strip.showColor(neopixel.colors(NeoPixelColors.Purple))
 })
